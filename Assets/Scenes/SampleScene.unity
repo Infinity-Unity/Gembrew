@@ -428,7 +428,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fe65fb981153344b9f043ee55ab8486, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestSave
+  m_EditorClassIdentifier: Assembly-CSharp::Test
+  mint: {fileID: 11400000, guid: 0816cbb4f4429ed4188954db2e0461ea, type: 2}
+  sage: {fileID: 11400000, guid: fc86364e6a999004c90039a535f29136, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

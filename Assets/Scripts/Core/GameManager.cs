@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -6,6 +7,7 @@ public class GameManager : MonoBehaviour
     private  int currentGold;
 
     public static GameManager Instance;
+
 
     private void Awake()
     {
@@ -23,10 +25,17 @@ public class GameManager : MonoBehaviour
 
         Debug.Log(currentGold);
 
-
+       
         
 
     }
 
-    
+    private void Start()
+    {
+       
+
+
+    }
+
+
 }
