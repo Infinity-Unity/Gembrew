@@ -10,7 +10,6 @@ public static class SaveManager
         string json = JsonUtility.ToJson(data);
         string path = Path.Combine(Application.persistentDataPath, "save.json");
         File.WriteAllText(path,json);
-        Debug.Log($"Сохранено: {json} в {path}");
     }
 
     public static SaveData Load()
@@ -19,13 +18,11 @@ public static class SaveManager
  
         if (!File.Exists(path))
         {
-            Debug.Log("Указаного файла не существует!");
             return null;
         }
 
         string json = File.ReadAllText(path);
         SaveData data = JsonUtility.FromJson<SaveData>(json);
-        Debug.Log($"Загружено: {data.gold} из {json} из папки {path}");
         return data;
     }
 }

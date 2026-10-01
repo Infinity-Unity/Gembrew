@@ -46,4 +46,12 @@ public class Inventory
         return false;
 
     }
+
+    public bool Has(IngredientData ingredient, int amount)
+    {
+        if (amount <= 0) return false;
+        return GetAmount(ingredient) >= amount; 
+
+       
+    }
 }

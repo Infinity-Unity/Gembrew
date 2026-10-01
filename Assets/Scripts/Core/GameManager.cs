@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         if (data != null) currentGold = data.gold;
         else currentGold = startingGold;
 
-        Debug.Log(currentGold);
+        
 
        
         

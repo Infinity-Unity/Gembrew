@@ -10,8 +10,8 @@ public class InventoryTester : MonoBehaviour
 
     private void Start()
     {
-        // 1. Пустой склад
         var inv = new Inventory();
+        // 1. Пустой склад
         Check("1: GetAmount на пустом складе", 0, inv.GetAmount(mint));
 
         // 2. Простое добавление
@@ -76,6 +76,25 @@ public class InventoryTester : MonoBehaviour
         Check("12a: TryRemove(mint, 3) вернул", true, inv.TryRemove(mint, 3));
         Check("12b: шалфей остался", 4, inv.GetAmount(sage));
         Check("12c: мяты нет", 0, inv.GetAmount(mint));
+
+        // 13. Проверки на существование
+        // 13. Has: склад с одним ингредиентом (Has ничего не меняет, склад можно переиспользовать)
+        inv = new Inventory();
+        inv.Add(mint, 3);
+
+        Check("13a: Has(mint, 2), запас 3", true, inv.Has(mint, 2));
+        Check("13b: Has(mint, 3), запас 3", true, inv.Has(mint, 3));
+        Check("13c: Has(mint, 5), запас 3", false, inv.Has(mint, 5));
+        Check("13d: Has(sage, 1), шалфея нет", false, inv.Has(sage, 1));
+        Check("13e: Has(mint, 0)", false, inv.Has(mint, 0));
+        Check("13f: Has(mint, -1)", false, inv.Has(mint, -1));
+
+
+
+
+
+
+
 
         Debug.Log($"ИТОГО: прошло {_passed}, упало {_failed}");
     }
