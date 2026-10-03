@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6698340905262213809}
   - component: {fileID: 3287372286283716479}
   - component: {fileID: 3326167990876754364}
+  - component: {fileID: -1995513592270897147}
   m_Layer: 5
   m_Name: IngredientCell
   m_TagString: Untagged
@@ -76,6 +77,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-1995513592270897147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042643725262147833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e364d2b42c9c1a14f8441944cec1f01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IngredientCellUI
+  _icon: {fileID: 7976204242466834612}
+  _countText: {fileID: 7949191563414014387}
+  _rarityColors:
+  - {r: 0.3, g: 0.3, b: 0.3, a: 1}
+  - {r: 0.3510558, g: 0.085172676, b: 0.6226415, a: 0}
+  - {r: 0, g: 0.0628773, b: 1, a: 0}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &2218412765062565075
 GameObject:
   m_ObjectHideFlags: 0
