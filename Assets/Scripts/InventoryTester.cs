@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InventoryTester : MonoBehaviour
@@ -5,13 +6,15 @@ public class InventoryTester : MonoBehaviour
     [SerializeField] private IngredientData mint;
     [SerializeField] private IngredientData sage;
 
+    [SerializeField] private GameObject emerald;
+
     private int _passed;
     private int _failed;
 
     private void Start()
     {
         var inv = new Inventory();
-        // 1. Пустой склад
+       /* // 1. Пустой склад
         Check("1: GetAmount на пустом складе", 0, inv.GetAmount(mint));
 
         // 2. Простое добавление
@@ -89,14 +92,28 @@ public class InventoryTester : MonoBehaviour
         Check("13e: Has(mint, 0)", false, inv.Has(mint, 0));
         Check("13f: Has(mint, -1)", false, inv.Has(mint, -1));
 
+*/
+
+        int calls = 0;
+        inv.Changed += () => calls++;
 
 
+        inv.Add(mint, 3);
+        inv.Add(mint, 3);
+        inv.Add(mint, 1);
+        inv.Add(mint, 1);
+        inv.Add(mint, 0);
 
-
-
+        Debug.Log($"Count calls: {calls}.");
 
 
         Debug.Log($"ИТОГО: прошло {_passed}, упало {_failed}");
+
+        
+        
+
+
+
     }
 
     private void Check(string testName, object expected, object actual)

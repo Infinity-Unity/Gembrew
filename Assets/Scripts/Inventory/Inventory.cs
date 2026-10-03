@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class Inventory
     
     private Dictionary<IngredientData, int> _items = new Dictionary<IngredientData, int>();
 
+    public event Action Changed;
+
     public void Add(IngredientData ingredient, int amount)
     {
         if (amount <= 0) return;
@@ -13,8 +16,13 @@ public class Inventory
         if (_items.TryAdd(ingredient, amount) == false)
         {
             _items[ingredient] += amount;
+            Changed?.Invoke();
         }
-        
+        else
+        {
+            Changed?.Invoke();
+        }
+
     }
 
     public int GetAmount(IngredientData ingredient)
@@ -36,10 +44,12 @@ public class Inventory
             if (diff <= 0)
             {
                 _items.Remove(ingredient);
+                Changed?.Invoke();
                 return true;
             }
 
             _items[ingredient] -= amount;
+            Changed?.Invoke();
             return true;
         }
 
@@ -50,8 +60,9 @@ public class Inventory
     public bool Has(IngredientData ingredient, int amount)
     {
         if (amount <= 0) return false;
-        return GetAmount(ingredient) >= amount; 
-
-       
+        return GetAmount(ingredient) >= amount;
     }
+
+    public IReadOnlyDictionary<IngredientData, int> Items => _items;
+    
 }
