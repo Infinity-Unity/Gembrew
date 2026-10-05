@@ -1,22 +1,48 @@
-using System;
 using UnityEngine;
 
 public class InventoryTester : MonoBehaviour
 {
     [SerializeField] private IngredientData mint;
-    [SerializeField] private IngredientData sage;
+    [SerializeField] private IngredientData topaz;
+    [SerializeField] private IngredientData emerald;
+    [SerializeField] private IngredientData amethyst;
+    [SerializeField] private IngredientData chamomile;
+    [SerializeField] private IngredientData garnet;
 
-    [SerializeField] private IngredientCellUI ingredientCellUITest;
+    //[SerializeField] private IngredientCellUI ingredientCellUITest;
 
     private int _passed;
     private int _failed;
 
     private void Start()
     {
-        var inv = new Inventory();
-        
-        ingredientCellUITest.Setup(mint, 9);
 
+        GameManager.Instance.Inventory.Add(mint, 3);
+        GameManager.Instance.Inventory.Add(topaz, 6);
+        GameManager.Instance.Inventory.Add(emerald, 1);
+        GameManager.Instance.Inventory.Add(amethyst, 2);
+        GameManager.Instance.Inventory.Add(chamomile, 30);
+        GameManager.Instance.Inventory.Add(garnet, 10);
+
+    }
+        
+
+    private void Check(string testName, object expected, object actual)
+    {
+        if (expected.Equals(actual))
+        {
+            _passed++;
+            Debug.Log($"PASS {testName}");
+        }
+        else
+        {
+            _failed++;
+            Debug.LogError($"FAIL {testName}: ожидалось {expected}, получено {actual}");
+        }
+    }
+
+    private void Test1()
+    {
         /* // 1. Пустой склад
          Check("1: GetAmount на пустом складе", 0, inv.GetAmount(mint));
 
@@ -119,19 +145,5 @@ public class InventoryTester : MonoBehaviour
 
 
 
-    }
-
-    private void Check(string testName, object expected, object actual)
-    {
-        if (expected.Equals(actual))
-        {
-            _passed++;
-            Debug.Log($"PASS {testName}");
-        }
-        else
-        {
-            _failed++;
-            Debug.LogError($"FAIL {testName}: ожидалось {expected}, получено {actual}");
-        }
     }
 }

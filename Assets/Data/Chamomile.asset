@@ -17,4 +17,4 @@ MonoBehaviour:
     \u0443\u0441\u043F\u043E\u043A\u0430\u0438\u0432\u0430\u0435\u0442 \u0438 \u0441\u043C\u044F\u0433\u0447\u0430\u0435\u0442."
   _cost: 10
   _rarity: 0
-  _icon: {fileID: 0}
+  _icon: {fileID: 2059111118, guid: dd2e1f01b56fc3b4a880396d003a9993, type: 3}

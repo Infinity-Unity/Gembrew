@@ -1,12 +1,12 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int startingGold;
-    private  int currentGold;
+    private int currentGold;
 
     public static GameManager Instance;
+    public Inventory Inventory { get; private set; }
 
 
     private void Awake()
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         else currentGold = startingGold;
 
         
-
+        Inventory = new Inventory();
        
         
 
