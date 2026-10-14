@@ -9,11 +9,7 @@ public class InventoryTester : MonoBehaviour
     [SerializeField] private IngredientData chamomile;
     [SerializeField] private IngredientData garnet;
 
-    //[SerializeField] private IngredientCellUI ingredientCellUITest;
-
-
     Inventory inv;
-
     private int _passed;
     private int _failed;
 
@@ -26,9 +22,7 @@ public class InventoryTester : MonoBehaviour
         GameManager.Instance.Inventory.Add(amethyst, 2);
         GameManager.Instance.Inventory.Add(chamomile, 30);
         GameManager.Instance.Inventory.Add(garnet, 10);
-
     }
-
 
     private void Check(string testName, object expected, object actual)
     {
@@ -126,8 +120,6 @@ public class InventoryTester : MonoBehaviour
         Check("13e: Has(mint, 0)", false, inv.Has(mint, 0));
         Check("13f: Has(mint, -1)", false, inv.Has(mint, -1));
 
-
-
         //14. Проверки на срабатывание события Changed
         
         inv = new Inventory();
@@ -147,21 +139,9 @@ public class InventoryTester : MonoBehaviour
         Check($"14e: TryRemove(mint, 1) Счетчик вызовов: {calls}", false, inv.TryRemove(mint, 1));
         Check($"14f: TryRemove(mint, 1) Счетчик вызовов: {calls}", false, inv.TryRemove(mint, 1));
         Check($"14g: TryRemove(mint, 1) Счетчик вызовов: {calls}", false, inv.TryRemove(mint, 1));
-
-        Check("14: Changed сработал 5 раз", 5, calls);
-
+        Check("14h: Changed сработал 5 раз", 5, calls);
         Debug.Log($"Count calls: {calls}.");
-
-
         Debug.Log($"ИТОГО: прошло {_passed}, упало {_failed}");
-
-       
-
-
-
-
-
-
     }
 
     [ContextMenu("Remove mint")]
