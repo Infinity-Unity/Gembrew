@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44fdd43a116653429e9cb201d8d2136, type: 3}
+  m_Name: DewdropRecipe
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeData
+  _recipeName: "\u0420\u0435\u0446\u0435\u043F\u0442 \u0440\u043E\u0441\u044B"
+  _description: 
+  _ingredients:
+  - _ingredient: {fileID: 11400000, guid: fc86364e6a999004c90039a535f29136, type: 2}
+    _amount: 2
+  _resultIngredient: {fileID: 11400000, guid: b5a63ecf7d07f5f47a3f27cb33622828, type: 2}
+  _amountResultIngredient: 1
