@@ -12,8 +12,6 @@ public class IngredientCellUI : MonoBehaviour
 
     public void Setup(IngredientData data,int amount)
     {
-
-       
         if(data.Icon == null)
         {
             _icon.sprite = null;
@@ -26,7 +24,6 @@ public class IngredientCellUI : MonoBehaviour
         }
 
         _countText.text = amount.ToString();
-
     }
 
 }
