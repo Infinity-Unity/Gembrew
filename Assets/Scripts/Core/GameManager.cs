@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
     public Inventory Inventory { get; private set; }
+    public AlchemySystem AlchemySystem {  get; private set; }
 
     [SerializeField] private RecipeBook _allRecipeBook;
 
@@ -14,7 +15,10 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
 
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
         else
         {
             Destroy(gameObject);
@@ -26,6 +30,7 @@ public class GameManager : MonoBehaviour
         else _currentGold = _startingGold;
 
         Inventory = new Inventory();
+        AlchemySystem = new AlchemySystem();
     }
 
     public RecipeBook AllRecipeBook => _allRecipeBook;
