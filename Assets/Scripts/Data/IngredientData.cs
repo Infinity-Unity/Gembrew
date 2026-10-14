@@ -15,5 +15,3 @@ public class IngredientData : ScriptableObject
     public Rarity Rarity => _rarity;
     public Sprite Icon => _icon;
 }
-
-

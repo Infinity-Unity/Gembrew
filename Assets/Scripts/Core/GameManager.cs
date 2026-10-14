@@ -23,11 +23,7 @@ public class GameManager : MonoBehaviour
         if (data != null) currentGold = data.gold;
         else currentGold = startingGold;
 
-        
         Inventory = new Inventory();
-       
-        
-
     }
 
     private void Start()
