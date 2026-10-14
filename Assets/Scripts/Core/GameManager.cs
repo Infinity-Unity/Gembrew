@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private int startingGold;
-    private int currentGold;
+    [SerializeField] private int _startingGold;
+    private int _currentGold;
 
     public static GameManager Instance;
     public Inventory Inventory { get; private set; }
+
+    [SerializeField] private RecipeBook _allRecipeBook;
 
 
     private void Awake()
@@ -20,18 +22,12 @@ public class GameManager : MonoBehaviour
         }
 
         SaveData data = SaveManager.Load();
-        if (data != null) currentGold = data.gold;
-        else currentGold = startingGold;
+        if (data != null) _currentGold = data.gold;
+        else _currentGold = _startingGold;
 
         Inventory = new Inventory();
     }
 
-    private void Start()
-    {
-       
-
-
-    }
-
+    public RecipeBook AllRecipeBook => _allRecipeBook;
 
 }
