@@ -6,3 +6,4 @@ public enum Rarity
     Rare,
     Legendary
 }
+    
