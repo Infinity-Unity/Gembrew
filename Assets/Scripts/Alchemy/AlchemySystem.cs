@@ -2,14 +2,43 @@ using System.Collections.Generic;
 
 public class AlchemySystem
 {
-    private IReadOnlyList<RecipeData> _allRecipes = GameManager.Instance.AllRecipeBook.AllRecipes;
-    private Inventory _inventory = GameManager.Instance.Inventory;
+    private readonly Inventory _inventory;
+    private readonly IReadOnlyList<RecipeData> _recipes;
 
-    private RecipeData SearchRecipieItemsInPot(IReadOnlyDictionary<IngredientData,int> potItems)
+    public AlchemySystem(Inventory inventory, IReadOnlyList<RecipeData> recipes)
+    {
+        _inventory = inventory;
+        _recipes = recipes;
+    }
+
+    public bool TryCraft(IReadOnlyDictionary<IngredientData, int> potItems)
+    {
+        RecipeData recipe = FindRecipe(potItems);
+        if (recipe == null)
+        {
+            return false;
+        }
+
+        if (!HasInInventory(potItems))
+        {
+            return false;
+        }
+
+        foreach (var item in potItems)
+        {
+            _inventory.TryRemove(item.Key, item.Value);
+        }
+
+        _inventory.Add(recipe.ResultIngredient,recipe.AmountResultIngredient);
+
+        return true;
+    }
+
+    public RecipeData FindRecipe(IReadOnlyDictionary<IngredientData,int> potItems)
     {
         if(potItems == null || potItems.Count == 0) return null;
 
-        foreach (var recipe in _allRecipes)
+        foreach (var recipe in _recipes)
         {
             if(IsRecipeMatch(recipe, potItems))
             {
@@ -34,17 +63,8 @@ public class AlchemySystem
         }
         return true;
     }
+    
 
-    public bool TryCraft(IReadOnlyDictionary<IngredientData, int> potItems)
-    {
-        if (HasInInventory(potItems))
-        {
-
-        }
-
-
-        return true;
-    }
     private bool HasInInventory(IReadOnlyDictionary<IngredientData, int> potItems)
     {
         if(potItems == null || potItems.Count == 0) return false;

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public Inventory Inventory { get; private set; }
     public AlchemySystem AlchemySystem {  get; private set; }
 
-    [SerializeField] private RecipeBook _allRecipeBook;
+    [SerializeField] private RecipeCatalog _allRecipeBook;
 
 
     private void Awake()
@@ -30,9 +30,9 @@ public class GameManager : MonoBehaviour
         else _currentGold = _startingGold;
 
         Inventory = new Inventory();
-        AlchemySystem = new AlchemySystem();
+        AlchemySystem = new AlchemySystem(Inventory,_allRecipeBook.AllRecipes);
     }
 
-    public RecipeBook AllRecipeBook => _allRecipeBook;
+    public RecipeCatalog AllRecipeBook => _allRecipeBook;
 
 }
