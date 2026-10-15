@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "NewRecipeBook", menuName = "Alchemy/RecipeBook")]
-public class RecipeBook : ScriptableObject
+[CreateAssetMenu(fileName = "NewRecipeBook", menuName = "Alchemy/RecipeCatalog")]
+public class RecipeCatalog : ScriptableObject
 {
     [SerializeField] private List<RecipeData> _allRecipes;
 
