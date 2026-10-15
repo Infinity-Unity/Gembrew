@@ -64,5 +64,10 @@ public class Inventory
     }
 
     public IReadOnlyDictionary<IngredientData, int> Items => _items;
+
+    public void ClearInventory()
+    {
+        _items.Clear();
+    }
     
 }
