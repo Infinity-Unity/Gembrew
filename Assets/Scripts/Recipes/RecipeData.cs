@@ -17,6 +17,17 @@ public class RecipeData : ScriptableObject
     public IngredientData ResultIngredient => _resultIngredient;
     public int AmountResultIngredient => _amountResultIngredient;
 
+    private void OnValidate()
+    {
+        if (_ingredients == null || _ingredients.Count == 0)
+        {
+            Debug.LogWarning("Ошибка в RecipeData! Список рецептов пуст или не инициализирован. Заполните поля в испекторе!", this);
+        }
 
+        if(_resultIngredient == null)
+        {
+            Debug.LogWarning("Ошибка в RecipeData! Не добавлен конечный ингредиент. Заполните поля в испекторе!", this);
+        }
+    }
 
 }
