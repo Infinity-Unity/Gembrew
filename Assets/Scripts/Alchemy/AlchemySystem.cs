@@ -14,12 +14,7 @@ public class AlchemySystem
     public bool TryCraft(IReadOnlyDictionary<IngredientData, int> potItems)
     {
         RecipeData recipe = FindRecipe(potItems);
-        if (recipe == null)
-        {
-            return false;
-        }
-
-        if (!HasInInventory(potItems))
+        if (recipe == null || !HasInInventory(potItems) || recipe.ResultIngredient == null)
         {
             return false;
         }
@@ -41,14 +36,14 @@ public class AlchemySystem
             return null;
         }
 
-        if (CheckCorrectRecept())
-        {
-            return null;
-        } 
-
         foreach (var recipe in _recipes)
         {
-            if(IsRecipeMatch(recipe, potItems))
+            if (!IsRecipeValid(recipe))
+            {
+                continue;
+            }
+
+            if (IsRecipeMatch(recipe, potItems))
             {
                 return recipe;
             }
@@ -58,7 +53,10 @@ public class AlchemySystem
 
     private bool IsRecipeMatch(RecipeData recipeData,IReadOnlyDictionary<IngredientData,int> potItems)
     {
-        if(recipeData.Ingredients == null || recipeData.Ingredients.Count != potItems.Count) return false;
+        if(recipeData.Ingredients == null || recipeData.Ingredients.Count != potItems.Count)
+        {
+            return false;
+        }
 
         foreach(var recipeIngredient in recipeData.Ingredients)
         {
@@ -75,7 +73,10 @@ public class AlchemySystem
 
     private bool HasInInventory(IReadOnlyDictionary<IngredientData, int> potItems)
     {
-        if(potItems == null || potItems.Count == 0) return false;
+        if(potItems == null || potItems.Count == 0)
+        {
+            return false;
+        }
 
         foreach(var items in potItems)
         {
@@ -87,13 +88,15 @@ public class AlchemySystem
         return true;
     }
 
-
-    private bool CheckCorrectRecept()
+    private bool IsRecipeValid(RecipeData recipe)
     {
-        if(_recipes == null)
+        if (recipe == null || recipe.ResultIngredient == null) return false;
+        if (recipe.Ingredients == null || recipe.Ingredients.Count == 0) return false;
+
+        foreach (var line in recipe.Ingredients)
         {
-            return true;
+            if (line == null || line.Ingredient == null) return false;
         }
-        return false;
+        return true;
     }
 }
