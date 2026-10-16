@@ -14,20 +14,20 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-
-        if (Instance == null)
+        if (!TryInitInstance())
         {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
             return;
         }
 
         SaveData data = SaveManager.Load();
-        if (data != null) _currentGold = data.gold;
-        else _currentGold = _startingGold;
+        if (data != null)
+        {
+            _currentGold = data.gold;
+        }
+        else
+        {
+            _currentGold = _startingGold;
+        }
 
         Inventory = new Inventory();
         AlchemySystem = new AlchemySystem(Inventory,_allRecipeCatalog.AllRecipes);
@@ -39,7 +39,21 @@ public class GameManager : MonoBehaviour
     {
         if(_allRecipeCatalog == null)
         {
-            Debug.LogWarning("Ошибка в GameManager! Список рецептов пуст или не инициализирован. Заполните поля в испекторе!",this);
+            Debug.LogWarning("Ошибка в GameManager! Каталог рецептов пуст или не инициализирован. Заполните поля в испекторе!",this);
+        }
+    }
+
+    private bool TryInitInstance()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            return true;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return false;
         }
     }
 }
