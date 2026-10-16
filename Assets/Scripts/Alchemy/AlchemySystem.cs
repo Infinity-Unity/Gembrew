@@ -36,7 +36,15 @@ public class AlchemySystem
 
     public RecipeData FindRecipe(IReadOnlyDictionary<IngredientData,int> potItems)
     {
-        if(potItems == null || potItems.Count == 0) return null;
+        if(potItems == null || potItems.Count == 0)
+        {
+            return null;
+        }
+
+        if (CheckCorrectRecept())
+        {
+            return null;
+        } 
 
         foreach (var recipe in _recipes)
         {
@@ -50,7 +58,7 @@ public class AlchemySystem
 
     private bool IsRecipeMatch(RecipeData recipeData,IReadOnlyDictionary<IngredientData,int> potItems)
     {
-        if(recipeData.Ingredients.Count != potItems.Count) return false;
+        if(recipeData.Ingredients == null || recipeData.Ingredients.Count != potItems.Count) return false;
 
         foreach(var recipeIngredient in recipeData.Ingredients)
         {
@@ -77,5 +85,15 @@ public class AlchemySystem
             }
         }
         return true;
+    }
+
+
+    private bool CheckCorrectRecept()
+    {
+        if(_recipes == null)
+        {
+            return true;
+        }
+        return false;
     }
 }
