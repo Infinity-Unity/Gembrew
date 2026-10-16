@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _startingGold: 0
-  _allRecipeBook: {fileID: 11400000, guid: 018371c9498cd3f4fb825576db7de802, type: 2}
+  _allRecipeCatalog: {fileID: 11400000, guid: 018371c9498cd3f4fb825576db7de802, type: 2}
 --- !u!4 &1057612769
 Transform:
   m_ObjectHideFlags: 0
