@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public Inventory Inventory { get; private set; }
     public AlchemySystem AlchemySystem {  get; private set; }
 
-    [SerializeField] private RecipeCatalog _allRecipeBook;
+    [SerializeField] private RecipeCatalog _allRecipeCatalog;
 
 
     private void Awake()
@@ -30,9 +30,16 @@ public class GameManager : MonoBehaviour
         else _currentGold = _startingGold;
 
         Inventory = new Inventory();
-        AlchemySystem = new AlchemySystem(Inventory,_allRecipeBook.AllRecipes);
+        AlchemySystem = new AlchemySystem(Inventory,_allRecipeCatalog.AllRecipes);
     }
 
-    public RecipeCatalog AllRecipeBook => _allRecipeBook;
+    public RecipeCatalog AllRecipeCatalog => _allRecipeCatalog;
 
+    private void OnValidate()
+    {
+        if(_allRecipeCatalog == null)
+        {
+            Debug.LogWarning("Ошибка в GameManager! Список рецептов пуст или не инициализирован. Заполните поля в испекторе!",this);
+        }
+    }
 }
