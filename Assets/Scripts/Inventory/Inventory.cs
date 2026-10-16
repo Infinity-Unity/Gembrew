@@ -9,7 +9,7 @@ public class Inventory
 
     public void Add(IngredientData ingredient, int amount)
     {
-        if (amount <= 0)
+        if (ingredient == null || amount <= 0)
         {
             return;
         }
@@ -24,13 +24,17 @@ public class Inventory
 
     public int GetAmount(IngredientData ingredient)
     {
+        if (ingredient == null)
+        {
+            return 0;
+        }
         _items.TryGetValue(ingredient, out var amount);
         return amount;
     }
 
     public bool TryRemove(IngredientData ingredient, int amount)
     {
-        if(amount <= 0)
+        if(ingredient == null || amount <= 0)
         {
             return false;
         }
@@ -59,7 +63,10 @@ public class Inventory
 
     public bool Has(IngredientData ingredient, int amount)
     {
-        if (amount <= 0) return false;
+        if (ingredient == null || amount <= 0)
+        {
+            return false;
+        }
         return GetAmount(ingredient) >= amount;
     }
 
@@ -67,7 +74,18 @@ public class Inventory
 
     public void ClearInventory()
     {
+        if(_items.Count == 0)
+        {
+            return;
+        }
+
+        var keys = new List<IngredientData>(_items.Keys);
         _items.Clear();
+
+        foreach ( var key in keys)
+        {
+            Changed?.Invoke(key, 0);
+        }
     }
     
 }
